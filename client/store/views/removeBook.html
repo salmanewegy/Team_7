@@ -7,7 +7,7 @@
 </head>
 <body>
 		<div id="topmid">
-		<h1>Welcome to Online Book Store</h1>
+		<h1>Remove Book</h1>
 	</div>
 	<div class="home">
 		<a href="users/adminLogin">Home</a>
@@ -22,13 +22,13 @@
 	</div>
 	
 	<div class="tab">
-	<form action="remove" method="post">
+	<form id="remove-form" action="remove" method="post">
 		<label for="bookCode">Book Code : </label>
 		<input type="text" name="barcode" placeholder="Enter Book Code" id="bookCode">
 			<input class="RemoveBook" type="submit" value="Remove Book">
 	</form>
+	<div id="response"></div>
 	</div>
-
-  
+	<script src="remove-book.js"></script>
 </body>
 </html>

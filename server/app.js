@@ -87,6 +87,37 @@ app.post('/buy', (req, res) => {
     res.json({ success: success });
   });
 
-//-----------------------------
+//-----------------------------Add Books----------------
+app.post('/add-book', (request, response) => {
+    const { bookCode, bookName, author, price , bookQuantity} = request.body;
+  
+    const sql = 'INSERT INTO books (bookCode, bookName, author, price , bookQuantity) VALUES (?, ?, ?,  ?, ?)';
+    const values = [bookCode, bookName, author, price , bookQuantity];
+  
+    connection.query(sql, values, (error, result) => {
+      if (error) {
+        response.json({ success: false });
+      } else {
+        response.json({ success: true });
+      }
+    });
+  });
+
+  //-----------------------------Remove Books----------------
+  app.delete('/remove-book/:id', (request, response) => {
+    const id = request.params.id;
+  
+    const sql = 'DELETE FROM books WHERE id = ?';
+    const values = [id];
+  
+    connection.query(sql, values, (error, result) => {
+      if (error) {
+        response.json({ success: false });
+      } else {
+        response.json({ success: true });
+      }
+    });
+  });
+  
 
 app.listen(process.env.PORT, () => console.log('app is runnning'));
