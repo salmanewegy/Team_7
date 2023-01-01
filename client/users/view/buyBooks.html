@@ -7,8 +7,9 @@
 </head>
 <body >
 	<div id="topmid">
-		<h1>Welcome to Online Book Store</h1>
+		<h1>Buy Books</h1>
 	</div>
+
 	<div class="home">
 		<a href="">Home</a>
 	</div>
@@ -20,7 +21,42 @@
 	<div class="home">
 		<a href="index.html">Logout</a>
 	</div>
+
+	<table>
+		<tr>
+		  <th>ID</th>
+		  <th>Title</th>
+		  <th>Author</th>
+		  <th>Price</th>
+		  <th>Quantity</th>
+		</tr>
+		<tr id="book-1"> 
+		  <td>1</td>
+		  <td>Effective Java</td>
+		  <td>Joshua Bloch</td>
+		  <td>$368</td>
+		  <td><input type="number" id="quantity-1" value="1"></td>
+		</tr>
+		<tr id="book-2"> 
+		  <td>2</td>
+		  <td>Fluent Python</td>
+		  <td>Luciano Ramalho</td>
+		  <td>$1014</td>
+		  <td><input type="number" id="quantity-2" value="1"></td>
+		</tr>
+		<tr id="book-3"> 
+		  <td>3</td>
+		  <td>A Programmers Guide to Computer Science</td>
+		  <td>William Springer</td>
+		  <td>$188</td>
+		  <td><input type="number" id="quantity-3" value="1"></td>
+		</tr>
+	  </table>
+	  <button id="buy-button">Buy</button>
+	  <script src="buyBooks.js"></script>
 	
   
 </body>
 </html>
+
+    
