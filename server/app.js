@@ -80,8 +80,13 @@ app.get('/books', (req, res) => {
     });
   });
   
-  app.listen(3000, () => {
-    console.log('Server listening on port 3000');
+//----------------------Buy Book------------------
+app.post('/buy', (req, res) => {
+    const totalCost = req.body.totalCost;
+    const success = true; // 
+    res.json({ success: success });
   });
+
+//-----------------------------
 
 app.listen(process.env.PORT, () => console.log('app is runnning'));

@@ -77,6 +77,24 @@ class DbService {
             res.send("An error occurred while registering the user.");
           } 
     }
+
+    async books() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM books;"
+
+                connection.query(query, (err, results) => {
+                    if(err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response);
+            response.json(results);
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 
