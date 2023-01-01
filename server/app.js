@@ -21,7 +21,6 @@ app.get('/login', (req, res) => {
   });
 
 app.get('/adminLogin', (req, res) => {
-    // Render the login form
     res.render('adminLogin');
 });
   
@@ -38,13 +37,34 @@ app.post('/adminLogin', (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const db = dbService.getDbServiceInstance();
-    const result = db.login(username, password);
+    const result = db.userLogin(username, password);
       result
       .then(data => res.render('login'))
       .catch(err => console.log(err));
 });
   
-//--------------------Read-------------------
+//--------------------Register-------------------
 
+app.get("/userRegister", (req, res) => {
+    res.render("users/userRegister", {
+        pageTitle: "Registration"
+    });
+  });
+app.post('/userRegister', (req, res) =>{
+    const uName = req.body[UsersDBConstants.COLUMN_USERNAME];
+    const pWord = req.body[UsersDBConstants.COLUMN_PASSWORD];
+    const fName = req.body[UsersDBConstants.COLUMN_FIRSTNAME];
+    const lName = req.body[UsersDBConstants.COLUMN_LASTNAME];
+    const addr = req.body[UsersDBConstants.COLUMN_ADDRESS];
+    const phNo = req.body[UsersDBConstants.COLUMN_PHONE];
+    const mailId = req.body[UsersDBConstants.COLUMN_MAILID];
+  
+    const db = dbService.getDbServiceInstance();
+    const result = db.userRegister(uName, pWord, fName, lName, addr, phNo, mailId);
+      result
+      .then(res.render('userRegister'))
+      .catch(err => console.log(err));
+   
+});
 
 app.listen(process.env.PORT, () => console.log('app is runnning'));

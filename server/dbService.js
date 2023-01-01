@@ -42,7 +42,7 @@ class DbService {
     }
 
 
-//---------------------------------
+//---------------------------------------Login-------------------------------------
     async userLogin(username, password) {
         try {
             const loginId = await new Promise((resolve, reject) => {
@@ -59,7 +59,27 @@ class DbService {
             console.log(error);
         }
     }
+
+    async userRegister(uName, pWord, fName, lName, addr, phNo, mailId) {
+        try {
+            const result = await con.query(
+              "INSERT INTO " + users.TABLE_USERS + "  VALUES (?,?,?,?,?,?,?,?)",
+              [uName, pWord, fName, lName, addr, phNo, mailId, 2]
+            );
+            
+            if (result.affectedRows === 1) {
+              res.send("User Registered Successfully");
+            } else {
+              res.send("Sorry for interruption! Register again");
+            }
+          } catch (error) {
+            console.error(error);
+            res.send("An error occurred while registering the user.");
+          } 
+    }
 }
+
+
 
 
 
