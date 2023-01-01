@@ -1,37 +1,21 @@
-const { response } = require("express");
+const express = require('express');
+const app = express();
 
-document.addEventListener('DOMContentLoaded', function (){
-    fetch('http://localhost:5000/getAll')
-    .then(response =>response.json())
-    //.then(data => console.log(data));
-    .then(data => loadHTMLTable([data['data']]));
+app.use(express.static('public')); 
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
 });
 
-const addBtn = document.querySelector('#add-name-btn');
+app.get('/viewbook', (req, res) => {
+  res.sendFile(__dirname + '/viewbook.html'); 
+});
 
-addBtn.onclick = function () {
-    const nameInput = document.querySelector('#name-input');
-    const name = nameInput.value;
-    nameInput.value = "";
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/login.html'); 
+});
 
-    fetch('http://localhost:5000/insert', {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify({name: name})
-    })
-    .then(response => response.json())
-    .then(data => insertRowIntoTable(data['data']));
-}
+app.get('/register', (req, res) => {
+  res.sendFile(__dirname + '/register.html'); 
+});
 
-function insertRowIntoTable(data){
-
-}
-
-function loadHTMLTable(data){
-    const table = document.querySelector('table tbody');
-    if (data.length == 0){
-        table.innerHTML = "<tr><td class='no-data' colspan='5'>No Data</td><tr>";
-    }
-}
