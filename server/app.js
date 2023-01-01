@@ -67,4 +67,21 @@ app.post('/userRegister', (req, res) =>{
    
 });
 
+//------------------------Books--------------------
+
+app.get('/books', (req, res) => {
+    connection.query('SELECT * FROM books', (err, rows) => {
+      if (err) {
+        console.error('Error querying database:', err);
+        res.sendStatus(500); // Internal Server Error
+        return;
+      }
+      res.json(rows); // Return list of books as JSON
+    });
+  });
+  
+  app.listen(3000, () => {
+    console.log('Server listening on port 3000');
+  });
+
 app.listen(process.env.PORT, () => console.log('app is runnning'));
